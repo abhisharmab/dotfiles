@@ -1,10 +1,13 @@
 "Vim: configuration file 
 " disable vi compatibility (emulation of old bugs)
 set nocompatible
+filetype plugin indent on
 " use indentation of previous line
 set autoindent
 " use intelligent indentation for C
 set smartindent
+set ruler
+set wildmode=list:longest
 " configure tabwidth and insert spaces instead of tabs
 set tabstop=2        " tab width is 2 spaces
 set shiftwidth=2     " indent also with 2 spaces
