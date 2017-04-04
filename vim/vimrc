@@ -14,11 +14,21 @@ set shiftwidth=2     " indent also with 2 spaces
 set expandtab        " expand tabs to spaces
 " wrap lines at 120 chars. 80 is somewaht antiquated with nowadays displays.
 set textwidth=80
+set colorcolumn=+1
 " turn syntax highlighting on
 set t_Co=256
 syntax on
 syntax enable
 colorscheme brogrammer
+
+"Since I'm sloppy with my shift key, :Wq maps to :wq
+command W w
+command Wq wq
+
+" Uses filename regex for searching, not contents (seems to get better results)
+let g:ctrlp_regexp = 1
+set wildignore+=*/tmp/*,*.so,*.swp,*.o,*.a,*.zip,*.beam,*/.eunit/*,*.pyc
+
 " turn line numbers on
 set number
 " highlight matching braces
