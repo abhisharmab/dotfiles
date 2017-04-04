@@ -13,6 +13,7 @@ set tabstop=2        " tab width is 2 spaces
 set shiftwidth=2     " indent also with 2 spaces
 set expandtab        " expand tabs to spaces
 " wrap lines at 120 chars. 80 is somewaht antiquated with nowadays displays.
+set wrap
 set textwidth=80
 set colorcolumn=+1
 " turn syntax highlighting on
@@ -21,6 +22,7 @@ syntax on
 syntax enable
 colorscheme brogrammer
 
+set wrap linebreak nolist
 "Since I'm sloppy with my shift key, :Wq maps to :wq
 command W w
 command Wq wq
@@ -28,7 +30,9 @@ command Wq wq
 " Uses filename regex for searching, not contents (seems to get better results)
 let g:ctrlp_regexp = 1
 set wildignore+=*/tmp/*,*.so,*.swp,*.o,*.a,*.zip,*.beam,*/.eunit/*,*.pyc
-
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+" Faster ctrlp indexing with ag
+let g:ctrlp_user_command = 'ag %s -i --nogroup --hidden --ignore .git --ignore .svn --ignore .hg --ignore "**/*.pyc" --ignore .DS_Store --ignore "**/*.ebin" --ignore "**/*.swp" --ignore "**/*.so" -g ""'
 " turn line numbers on
 set number
 " highlight matching braces
