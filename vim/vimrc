@@ -12,13 +12,18 @@ set wildmode=list:longest
 set tabstop=2        " tab width is 2 spaces
 set shiftwidth=2     " indent also with 2 spaces
 set expandtab        " expand tabs to spaces
+
 " wrap lines at 120 chars. 80 is somewaht antiquated with nowadays displays.
 set wrap
 set textwidth=80
 set colorcolumn=+1
+
 " turn syntax highlighting on
-set t_Co=256
+filetype on
+filetype plugin on
+filetype indent on
 syntax on
+set t_Co=256
 syntax enable
 colorscheme brogrammer
 
@@ -40,6 +45,9 @@ set showmatch
 " intelligent comments
 set comments=sl:/*,mb:\ *,elx:\ */
 
+let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
+
+"set tags=./tags,tags;
 " Install OmniCppComplete like described on http://vim.wikia.com/wiki/C++_code_completion
 " This offers intelligent C++ completion when typing ‘.’ ‘->’ or <C-o>
 " Load standard tag files
