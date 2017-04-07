@@ -2,6 +2,39 @@
 " disable vi compatibility (emulation of old bugs)
 set nocompatible
 filetype plugin indent on
+
+" set the runtime path to include Vundle and initialize
+ set rtp+=~/.vim/bundle/Vundle.vim
+ call vundle#begin()
+" " alternatively, pass a path where Vundle should install plugins
+" "call vundle#begin('~/some/path/here')
+"
+" " let Vundle manage Vundle, required
+ Plugin 'VundleVim/Vundle.vim'
+ Plugin 'Valloric/YouCompleteMe'
+
+"
+" " The following are examples of different formats supported.
+" " Keep Plugin commands between vundle#begin/end.
+" " plugin on GitHub repo
+ Plugin 'tpope/vim-fugitive'
+" " plugin from http://vim-scripts.org/vim/scripts.html
+" " Plugin 'L9'
+" " Git plugin not hosted on GitHub
+" Plugin 'git://git.wincent.com/command-t.git'
+" " git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+" " The sparkup vim script is in a subdirectory of this repo called vim.
+" " Pass the path to set the runtimepath properly.
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" " Install L9 and avoid a Naming conflict if you've already installed a
+" " different version somewhere else.
+" " Plugin 'ascenator/L9', {'name': 'newL9'}
+"
+" " All of your Plugins must be added before the following line
+ call vundle#end()            " required
+
+
 " use indentation of previous line
 set autoindent
 " use intelligent indentation for C
@@ -34,10 +67,15 @@ command Wq wq
 
 " Uses filename regex for searching, not contents (seems to get better results)
 let g:ctrlp_regexp = 1
-set wildignore+=*/tmp/*,*.so,*.swp,*.o,*.a,*.zip,*.beam,*/.eunit/*,*.pyc
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=40
+let g:ctrlp_clear_cache_on_exit = 0
+set wildignore+=*/tmp/*,*.so,*.swp,*.o,*.a,*.zip,*.beam,*/.eunit/*,*.pyc,*/ext/*
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 " Faster ctrlp indexing with ag
-"let g:ctrlp_user_command = 'ag %s -i --nogroup --hidden --ignore .git --ignore .svn --ignore .hg --ignore "**/*.pyc" --ignore .DS_Store --ignore "**/*.ebin" --ignore "**/*.swp" --ignore "**/*.so" -g ""'
+"let g:ctrlp_user_command = 'ag'
+
+let g:ycm_global_ycm_extra_conf="/home/abhi/.vim/bundle/.ycm_extra_conf.py"
 " turn line numbers on
 set number
 " highlight matching braces
@@ -45,7 +83,7 @@ set showmatch
 " intelligent comments
 set comments=sl:/*,mb:\ *,elx:\ */
 
-let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib'
+"let g:clang_library_path="let g:clang_library_path='/usr/lib/llvm-3.8/lib"
 
 "set tags=./tags,tags;
 " Install OmniCppComplete like described on http://vim.wikia.com/wiki/C++_code_completion

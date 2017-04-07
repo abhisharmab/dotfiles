@@ -2,3 +2,4 @@
 --exclude=.git
 --exclude=log
 --exclude=ext/*
+--exclude=ext
