@@ -12,6 +12,7 @@ filetype plugin indent on
 " " let Vundle manage Vundle, required
  Plugin 'VundleVim/Vundle.vim'
  Plugin 'Valloric/YouCompleteMe'
+ Plugin 'scrooloose/nerdtree'
 
 " " All of your Plugins must be added before the following line
  call vundle#end()            " required
@@ -45,6 +46,7 @@ set wrap linebreak nolist
 "Since I'm sloppy with my shift key, :Wq maps to :wq
 command W w
 command Wq wq
+command Q q
 
 " Uses filename regex for searching, not contents (seems to get better results)
 let g:ctrlp_regexp = 1
@@ -53,10 +55,14 @@ let g:ctrlp_max_depth=40
 let g:ctrlp_clear_cache_on_exit = 0
 set wildignore+=*/tmp/*,*.so,*.swp,*.o,*.a,*.zip,*.beam,*/.eunit/*,*.pyc,*/ext/*
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+
 " Faster ctrlp indexing with ag
 "let g:ctrlp_user_command = 'ag'
-
-let g:ycm_global_ycm_extra_conf="/home/abhi/.vim/bundle/.ycm_extra_conf.py"
+let g:ycm_register_as_syntastic_checker = 0
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_global_ycm_extra_conf="/home/abhi/foghorn-edgestack/.ycm_extra_conf.py"
 " turn line numbers on
 set number
 " highlight matching braces
@@ -74,3 +80,6 @@ set tags+=~/.vim/tags/cpp
 set tags+=~/.vim/tags/gl
 set tags+=~/.vim/tags/sdl
 set tags+=~/.vim/tags/qt4
+
+"Mappings
+map <silent> <C-n> :NERDTreeToggle<CR>
