@@ -1,7 +1,13 @@
 "Vim: configuration file 
 " disable vi compatibility (emulation of old bugs)
 set nocompatible
+" Show file name with path
+set laststatus=2
 filetype plugin indent on
+
+" Move buffer with Ctrl J and K
+map <C-J> :bnext<CR>
+map <C-K> :bprev<CR>
 
 " set the runtime path to include Vundle and initialize
  set rtp+=~/.vim/bundle/Vundle.vim
