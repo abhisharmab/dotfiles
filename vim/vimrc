@@ -9,6 +9,9 @@ filetype plugin indent on
 " Move buffer with Ctrl J and K
 map <C-J> :bnext<CR>
 map <C-K> :bprev<CR>
+nmap ,c :e %<.cc<CR>
+nmap ,i :e %<.inl<CR>
+nmap ,h :e %<.h<CR>
 
 " set the runtime path to include Vundle and initialize
  set rtp+=~/.vim/bundle/Vundle.vim
@@ -44,7 +47,7 @@ set noshowmode
 "set statusline+=\ %f
 " Fuzzy file searcher setting
 set rtp+=~/.fzf
-nmap ,t :Files<CR>
+nmap ,p :Files<CR>
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " use indentation of previous line
