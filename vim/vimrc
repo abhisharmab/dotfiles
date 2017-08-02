@@ -1,4 +1,4 @@
-"Vim: configuration file 
+"Vim: configuration file
 " disable vi compatibility (emulation of old bugs)
 set nocompatible
 " Show file name with path
@@ -17,11 +17,20 @@ map <C-K> :bprev<CR>
 "
 " " let Vundle manage Vundle, required
  Plugin 'VundleVim/Vundle.vim'
+ Plugin 'ctrlpvim/ctrlp.vim'
+ Plugin 'junegunn/fzf.vim'
  Plugin 'Valloric/YouCompleteMe'
  Plugin 'scrooloose/nerdtree'
+ Plugin 'scrooloose/nerdcommenter'
 
 " " All of your Plugins must be added before the following line
  call vundle#end()            " required
+
+
+" Fuzzy file searcher setting 
+set rtp+=~/.fzf
+nmap ,t :Files<CR>
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " use indentation of previous line
 set autoindent
@@ -38,7 +47,7 @@ set expandtab        " expand tabs to spaces
 set wrap
 set textwidth=80
 set colorcolumn=+1
-
+set backspace=indent,eol,start
 " turn syntax highlighting on
 filetype on
 filetype plugin on
@@ -62,13 +71,28 @@ let g:ctrlp_clear_cache_on_exit = 0
 set wildignore+=*/tmp/*,*.so,*.swp,*.o,*.a,*.zip,*.beam,*/.eunit/*,*.pyc,*/ext/*
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
+"YouCompleteMe 
+let g:ycm_register_as_syntastic_checker = 1
+let g:ycm_enable_diagnostic_signs = 1
+let g:ycm_enable_diagnostic_highlighting = 1
 
-" Faster ctrlp indexing with ag
-"let g:ctrlp_user_command = 'ag'
-let g:ycm_register_as_syntastic_checker = 0
-let g:ycm_enable_diagnostic_signs = 0
-let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_global_ycm_extra_conf="/home/abhi/foghorn-edgestack/.ycm_extra_conf.py"
+let g:ycm_extra_conf_globlist = ['~/foghorn-edgestack/*']
+" Use this dummy file to suppress warnings about missing ycm_extra_conf.py
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_auto_trigger = 1 
+" Only run for C/C++ files
+let g:ycm_filetype_whitelist = { 'cpp': 1, 'c': 1, 'h':1, 'hpp':1 }
+" Ctrl-backslash invokes auto complete dialog
+let g:ycm_key_invoke_completion = '<C-\>'
+
+
+" Ctrl-] jumps to the defn of a symbol - just like in ctags
+nmap <C-]> :YcmCompleter GoTo<CR>
+" Ctrl-t goes back
+"unmap <C-t>
+nmap <C-t> <C-o>
+
+
 " turn line numbers on
 set number
 " highlight matching braces
@@ -89,3 +113,6 @@ set tags+=~/.vim/tags/qt4
 
 "Mappings
 map <silent> <C-n> :NERDTreeToggle<CR>
+
+set splitbelow
+set splitright
