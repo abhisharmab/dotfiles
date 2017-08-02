@@ -84,7 +84,8 @@ let g:ycm_auto_trigger = 1
 let g:ycm_filetype_whitelist = { 'cpp': 1, 'c': 1, 'h':1, 'hpp':1 }
 " Ctrl-backslash invokes auto complete dialog
 let g:ycm_key_invoke_completion = '<C-\>'
-
+let g:ycm_autoclose_preview_window_after_completion=1
+nmap <C-f> :YcmCompleter FixIt<CR>
 
 " Ctrl-] jumps to the defn of a symbol - just like in ctags
 nmap <C-]> :YcmCompleter GoTo<CR>
