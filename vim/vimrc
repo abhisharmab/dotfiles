@@ -1,3 +1,4 @@
+"Abhi
 "Vim: configuration file
 " disable vi compatibility (emulation of old bugs)
 set nocompatible
@@ -22,12 +23,26 @@ map <C-K> :bprev<CR>
  Plugin 'Valloric/YouCompleteMe'
  Plugin 'scrooloose/nerdtree'
  Plugin 'scrooloose/nerdcommenter'
-
+ Plugin 'tpope/vim-fugitive'
+ Plugin 'itchyny/lightline.vim'
 " " All of your Plugins must be added before the following line
  call vundle#end()            " required
 
-
-" Fuzzy file searcher setting 
+"StatusLine
+let g:lightline = {
+      \ 'colorscheme': 'powerline',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
+set noshowmode
+"set statusline+=%{fugitive#statusline()}
+"set statusline+=\ %f
+" Fuzzy file searcher setting
 set rtp+=~/.fzf
 nmap ,t :Files<CR>
 imap <c-x><c-l> <plug>(fzf-complete-line)
@@ -71,20 +86,24 @@ let g:ctrlp_clear_cache_on_exit = 0
 set wildignore+=*/tmp/*,*.so,*.swp,*.o,*.a,*.zip,*.beam,*/.eunit/*,*.pyc,*/ext/*
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
-"YouCompleteMe 
-let g:ycm_register_as_syntastic_checker = 1
+"YouCompleteMe
+"let g:ycm_register_as_syntastic_checker = 1
 let g:ycm_enable_diagnostic_signs = 1
 let g:ycm_enable_diagnostic_highlighting = 1
 
 let g:ycm_extra_conf_globlist = ['~/foghorn-edgestack/*']
 " Use this dummy file to suppress warnings about missing ycm_extra_conf.py
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_auto_trigger = 1 
+let g:ycm_auto_trigger = 1
 " Only run for C/C++ files
 let g:ycm_filetype_whitelist = { 'cpp': 1, 'c': 1, 'h':1, 'hpp':1 }
 " Ctrl-backslash invokes auto complete dialog
 let g:ycm_key_invoke_completion = '<C-\>'
-let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_autoclose_preview_window_after_insertion = 0
+let g:ycm_autoclose_preview_window_after_completion = 0
+let g:ycm_add_preview_to_completeopt = 0
+set completeopt-=preview
 nmap <C-f> :YcmCompleter FixIt<CR>
 
 " Ctrl-] jumps to the defn of a symbol - just like in ctags
