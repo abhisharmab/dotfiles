@@ -73,7 +73,8 @@ filetype indent on
 syntax on
 set t_Co=256
 syntax enable
-colorscheme brogrammer
+set background=dark
+colorscheme solarized
 
 set wrap linebreak nolist
 "Since I'm sloppy with my shift key, :Wq maps to :wq
